@@ -1,5 +1,4 @@
-% Document Class
-\documentclass[11pt, a4paper]{article}
+\documentclass[11pt, a4paper]{report}
 
 %----------------------------------------------------------------
 %                           PACKAGES
@@ -36,7 +35,7 @@
 
 \pagestyle{fancy}
 \fancyhf{} % Clear all header and footer fields
-\lhead{\courseCode: \courseTitle \\ \professorName, \institution} % Course title on the left of the header
+\lhead{\courseTitle} % Course title on the left of the header
 \rhead{\lectureDate} % Lecture date on the right of the header
 \cfoot{\thepage}     % Page number in the center of the footer
 
@@ -45,19 +44,17 @@
 %----------------------------------------------------------------
 
 % --- Define commands for title elements ---
-\newcommand{\courseTitle}{Math Method of Physics}
-\newcommand{\courseCode}{PH205}
-\newcommand{\professorName}{Justin David}
-\newcommand{\institution}{IISc}
+\newcommand{\courseTitle}{Default Course Title}
 \newcommand{\lectureNumber}{XX}
 \newcommand{\lectureTopic}{Default Lecture Topic}
 \newcommand{\lectureDate}{\today}
+\newcommand{\instructorName}{Professor Name}
 
 % --- Redefine the maketitle command for a custom look ---
 \makeatletter
 \renewcommand{\maketitle}{
     \begin{center}
-        \vspace*{1cm}
+        \vspace*{\fill}
         {\Huge\bfseries \courseTitle}
         \vspace{0.5cm}
         
@@ -74,7 +71,7 @@
         
         \vspace{0.5cm}
         \hrule
-        \vspace{1cm}
+        \vspace*{\fill}
     \end{center}
 }
 \makeatother
@@ -112,7 +109,7 @@
     colback=Red!5,
     colframe=Red!75!black,
     fonttitle=\bfseries,
-    title=Key Point!
+    title=Key Point! 📝
 }
 
 
@@ -122,9 +119,8 @@
 
 %----------- SET YOUR LECTURE DETAILS HERE -----------
 \renewcommand{\courseTitle}{PH205: Math Method of Physics}
-\renewcommand{\lectureNumber}{2}
+\renewcommand{\lectureNumber}{}
 \renewcommand{\lectureTopic}{Math Method of Physics}
-\newcommand{\instructorName}{Justin David}
 \renewcommand{\lectureDate}{August 4, 2025}
 \renewcommand{\instructorName}{Justin David}
 %-----------------------------------------------------
@@ -136,71 +132,284 @@
 \tableofcontents % Creates a table of contents from your sections
 \newpage
 
-%----------------------------------------------------------------
-%                   START WRITING YOUR NOTES
-%----------------------------------------------------------------
+\chapter{Prerequisites}
 
-\section{Newton's First Law: The Law of Inertia}
+\section{Linear Operators}
+A linear operator is a function between two vector spaces that preserves the operations of vector addition and scalar multiplication.
+$$
+A(e_i) = \sum_{j=1}^n A_{ji} e_j
+$$
+A linear operator maps from one vector space to another.
+$$
+V \to V'
+$$
+$$
+e_i \to v'
+$$
+$$
+i = 1 \dots n
+$$
+$$
+j = 1 \dots n
+$$
+$$
+\phi(e_i) = \sum_{j=1}^n A_{ji} f_j
+$$
+Example: map from $n$-dimensional vector space to $n$-dimensional vector space.
+$$
+\phi(e_i) = e_i
+$$
+$$
+\phi(e_j) = 0, \quad j \ne i
+$$
+This results in a matrix:
+$$
+\begin{pmatrix}
+1 & 0 & \dots \\
+0 & 0 & \dots \\
+\vdots & \vdots & \ddots
+\end{pmatrix}
+$$
 
-Newton's first law states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. This property of an object to resist changes in its state of motion is called \textbf{inertia}.
+\subsection{Projection Operator}
+A projection operator is a linear operator $P$ from a vector space to itself such that $P^2 = P$.
+$$
+V = \sum_{i} c_i e_i
+$$
+$$
+\phi^2(v) = \phi(\phi(v)) = \phi(\phi(c_i e_i)) = \phi(c_i e_i) = c_i e_i = v
+$$
+$$
+\phi(c_i v_i) = v_i, \phi(c_i v_i) = v_i
+$$
+Example: mapping 2-dimensional to 3-dimensional v-s.
+$$
+\phi(e_1) = f_1+f_2+f_3
+$$
+$$
+\phi(e_2) = f_1+f_2-f_3
+$$
+This gives the matrix representation $\phi$:
+$$
+\begin{pmatrix}
+1 & 1 \\
+1 & 1 \\
+1 & -1
+\end{pmatrix}
+$$
+Matrices occur naturally in representation of linear operator. Matrix algebra are inherited from the rules of linear algebra.
+$$
+A(c_i) =  A_{ji} c_j
+$$
+$$
+B(c_i) = B_{ji} c_j
+$$
+$$
+(A+B)(e_i) = A(e_i)+B(e_i) = A_{ji}e_j + B_{ji}e_j = (A_{ji}+B_{ji})e_j
+$$
 
-\begin{keypoint}
-    An object's velocity, $\vec{v}$, is constant if and only if the net force, $\sum \vec{F}$, acting on it is zero. Mathematically:
-    $$ \sum \vec{F} = 0 \iff \frac{d\vec{v}}{dt} = 0 $$
-\end{keypoint}
+\section{Matrix Properties and Operations}
 
-\section{Newton's Second Law: Force and Acceleration}
+\subsection{Scalar Multiplication and Related Concepts}
+Scalar multiplication is one of the basic operations defining a vector space.
+$$
+(\lambda A)(e_i) = \lambda A(e_i) = \lambda A_{ji} e_j
+$$
+$$
+(\lambda A)_{ij} = \lambda A_{ij}
+$$
+$$
+(A^{-1})_{ij} \cdot (A^{-1})_{ij} = \delta_{ij}
+$$
+$A^{-1}$ has to be a square matrix.
 
-This is the most famous of the three laws. It provides a quantitative relationship between force, mass, and acceleration.
+$$
+e^A = I + A + \frac{A^2}{2!} + \dots
+$$
+Similarly there is $\sin(A)$, $\cos(A)$, $\cosh(A)$, $\sinh(A)$.
+$$
+(1-A)^{-1} = \frac{1}{1-A} = I + A + A^2 + \dots
+$$
+Method of computing inverse for matrices close to identity.
 
-\begin{definition}{Force}
-    In physics, a force is an influence that can change the motion of an object. A force can cause an object with mass to change its velocity (e.g., moving from a state of rest), i.e., to accelerate.
-\end{definition}
+\subsection{Matrices related to a matrix $A$}
+$$
+(A^T)_{ij} = A_{ji} \quad \text{(Transpose)}
+$$
+$$
+(A^\ast)_{ij} = (A_{ij})^\ast \quad \text{(Complex conjugate)}
+$$
+$$
+(A^\dagger)_{ij} = (A^T_{ij})^\ast = (A_{ji})^\ast \quad \text{(Hermitian conjugate)}
+$$
 
-The law is expressed by the formula:
-$$ \vec{F}_{net} = m\vec{a} $$
-Where:
+\subsection{Special Matrices}
 \begin{itemize}
-    \item $\vec{F}_{net}$ is the net force vector.
-    \item $m$ is the mass of the object (a scalar).
-    \item $\vec{a}$ is the acceleration vector.
+    \item $A^T=A$: Symmetric
+    \item $A^T=-A$: Anti-symmetric
+    \item $A^\dagger=A$: Hermitian
+    \item $A^\dagger=-A$: Anti-Hermitian
+    \item $A^\ast=A$: Real
 \end{itemize}
 
-\begin{example}
-    A 10 kg box is pushed on a frictionless surface with a horizontal force of 50 N. What is its acceleration?
-    \begin{center}
-        % For images, make sure the image file (e.g., box_diagram.png)
-        % is in the same directory as your .tex file.
-        % \includegraphics[width=0.4\textwidth]{box_diagram.png}
-    \end{center}
-    
-    Using Newton's second law:
-    $$ a = \frac{F}{m} = \frac{50 \text{ N}}{10 \text{ kg}} = 5 \text{ m/s}^2 $$
-\end{example}
+\section{Advanced Matrix Concepts}
 
-\section{Newton's Third Law: Action and Reaction}
+\subsection{Diagonal and Block Diagonal Matrices}
+\begin{itemize}
+    \item Diagonal matrix $A_{ij}=0$ if $i \ne j$.
+    \item Upper triangular matrix $A_{ij}=0$ if $i>j$.
+\end{itemize}
+Matrices can be decomposed into block diagonal.
 
-For every action, there is an equal and opposite reaction.
+\subsubsection{Block diagonal matrix}
+A \textbf{block diagonal matrix} is a square matrix that is partitioned into smaller square matrices (blocks) along its diagonal, with all off-diagonal blocks being zero matrices. Formally, a block diagonal matrix $M$ can be written as:
+$$
+M = \begin{pmatrix}
+B_1 & 0 & \cdots & 0 \\
+0 & B_2 & \cdots & 0 \\
+\vdots & \vdots & \ddots & \vdots \\
+0 & 0 & \cdots & B_k
+\end{pmatrix}
+$$
+where each $B_i$ is a square matrix (block) of size $n_i \times n_i$ and the zeros represent zero matrices of appropriate sizes.
 
-\begin{theorem}{Action-Reaction Pairs}
-    If object A exerts a force $\vec{F}_{AB}$ on object B, then object B simultaneously exerts a force $\vec{F}_{BA}$ on object A, and the two forces are equal in magnitude and opposite in direction:
-    $$ \vec{F}_{AB} = -\vec{F}_{BA} $$
-\end{theorem}
+\textbf{Properties:}
+\begin{itemize}
+    \item The determinant of a block diagonal matrix is the product of the determinants of its blocks:
+    $$
+    \det(M) = \prod_{i=1}^k \det(B_i)
+    $$
+    \item The trace of a block diagonal matrix is the sum of the traces of its blocks:
+    $$
+    \text{Tr}(M) = \sum_{i=1}^k \text{Tr}(B_i)
+    $$
+    \item The inverse of a block diagonal matrix (if all blocks are invertible) is the block diagonal matrix of the inverses:
+    $$
+    M^{-1} = \begin{pmatrix}
+    B_1^{-1} & 0 & \cdots & 0 \\
+    0 & B_2^{-1} & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & B_k^{-1}
+    \end{pmatrix}
+    $$
+\end{itemize}
 
-\lipsum[1-2] % This is just dummy text, you can delete it.
+\textbf{Example:}
+$$
+\begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 2 & 0 & 0 \\
+0 & 0 & 3 & 4 \\
+0 & 0 & 5 & 6
+\end{pmatrix}
+=\begin{pmatrix}
+\begin{matrix}1 & 0 \\ 0 & 2\end{matrix} & 0 \\
+0 & \begin{matrix}3 & 4 \\ 5 & 6\end{matrix}
+\end{pmatrix}
+$$
+Here, the matrix is block diagonal with two blocks: a $2\times2$ diagonal block and a $2\times2$ non-diagonal block.
 
-\end{document}% --- Problem Box ---
-\newtcolorbox{problem}[1]{
-    colback=Thistle!10,
-    colframe=Plum,
-    fonttitle=\bfseries,
-    title=Problem: #1
+Block diagonal matrices are useful in linear algebra because they allow us to break down complex problems into smaller, more manageable subproblems, especially when dealing with direct sums of vector spaces or simplifying linear transformations that act independently on subspaces.
+
+\subsection{Trace and Determinant}
+Trace of a matrix is sum of diagonal.
+$$
+\text{Tr}(A) = \sum A_{ii}
+$$
+\subsubsection{How to find the trace of a matrix}
+$$
+a_{11}x_1+a_{12}x_2 = c_1
+$$
+$$
+a_{21}x_1+a_{22}x_2 = c_2
+$$
+$$
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{pmatrix}
+\begin{pmatrix}
+x_1 \\ x_2
+\end{pmatrix}
+=
+\begin{pmatrix}
+c_1 \\ c_2
+\end{pmatrix}
+$$
+$$
+x_1 = \frac{
+\begin{vmatrix}
+c_1 & a_{12} \\
+c_2 & a_{22}
+\end{vmatrix}
+}{
+\begin{vmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22}
+\end{vmatrix}
 }
+$$
+\subsubsection{Determinant of a matrix}
+$$
+\det A =
+\begin{vmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{vmatrix}
+$$
+$$
+\epsilon^{123\dots n} = 1
+$$
+$$
+\epsilon^{2134\dots n} = -1
+$$
+$$
+\epsilon^{i_1 i_2 \dots i_n} = 0
+$$
+$$
+\det A = \sum_{i_1, i_2, \dots, i_n} \epsilon^{i_1 i_2 \dots i_n} a_{1 i_1} a_{2 i_2} \dots a_{n i_n}
+$$
 
-% --- Solution Box ---
-\newtcolorbox{solution}{
-    colback=Honeydew!10,
-    colframe=ForestGreen,
-    fonttitle=\bfseries,
-    title=Solution
-}
+\subsection{Applications in Quantum Mechanics}
+\subsubsection{Considering 2 particle fermions}
+The wave function needs to be anti-symmetric.
+$$
+\psi(x_1) \psi(x_2) - \psi(x_2) \psi(x_1)
+$$
+
+Slater determinant
+$$
+\begin{vmatrix}
+\psi_1(x_1) & \psi_2(x_1) & \dots & \psi_n(x_1) \\
+\psi_1(x_2) & \psi_2(x_2) & \dots & \psi_n(x_2) \\
+\vdots \\
+\psi_1(x_n) & \psi_2(x_n) & \dots & \psi_n(x_n)
+\end{vmatrix}
+=
+\begin{vmatrix}
+\psi_1(x_1) & \psi_2(x_1) \\
+\psi_1(x_2) & \psi_2(x_2)
+\end{vmatrix}
+\begin{vmatrix}
+\psi_1(x_1) & \psi_2(x_1) \\
+\psi_2(x_1) & \psi_1(x_1)
+\end{vmatrix}
+$$
+
+\subsection{Matrix Inversion}
+\subsubsection{Inverse of a Matrix}
+$$
+(A^{-1})_{ij} = \frac{\text{Cofactor } A_{ji}}{|A|}
+$$
+Cofactor $A_{ij} = (-1)^{i+j}$
+
+\subsubsection{Gauss-Jordan Matrix Inversion}
+\begin{itemize}
+    \item $A_{ij} \to \lambda A_{ij} \quad \forall j$ (Row operation: multiplication by $\lambda$)
+    \item Subtract a row by a multiple of another.
+    \item $A_{ij} \to A_{ij}$
+\end{itemize}
+
+\end{document}
