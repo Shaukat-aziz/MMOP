@@ -1,0 +1,206 @@
+% Document Class
+\documentclass[11pt, a4paper]{article}
+
+%----------------------------------------------------------------
+%                           PACKAGES
+%----------------------------------------------------------------
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsfonts} % Essential math packages
+\usepackage[english]{babel}
+\usepackage{graphicx}         % For including images
+\usepackage[a4paper, margin=1in]{geometry} % Set page margins
+\usepackage[dvipsnames, svgnames]{xcolor}   % For custom colors
+\usepackage{fancyhdr}         % For custom headers and footers
+\usepackage{lipsum}           % For dummy text (you can remove this)
+
+% Hyperlinks package - should generally be loaded last
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=RoyalBlue,
+    filecolor=magenta,      
+    urlcolor=teal,
+    citecolor=green,
+    pdftitle={Class Notes},
+    pdfpagemode=FullScreen,
+}
+
+% Package for creating styled boxes (for definitions, theorems, etc.)
+\usepackage[most]{tcolorbox}
+
+%----------------------------------------------------------------
+%                        HEADER & FOOTER
+%----------------------------------------------------------------
+
+\pagestyle{fancy}
+\fancyhf{} % Clear all header and footer fields
+\lhead{\courseCode: \courseTitle \\ \professorName, \institution} % Course title on the left of the header
+\rhead{\lectureDate} % Lecture date on the right of the header
+\cfoot{\thepage}     % Page number in the center of the footer
+
+%----------------------------------------------------------------
+%                        TITLE INFORMATION
+%----------------------------------------------------------------
+
+% --- Define commands for title elements ---
+\newcommand{\courseTitle}{Math Method of Physics}
+\newcommand{\courseCode}{PH205}
+\newcommand{\professorName}{Justin David}
+\newcommand{\institution}{IISc}
+\newcommand{\lectureNumber}{XX}
+\newcommand{\lectureTopic}{Default Lecture Topic}
+\newcommand{\lectureDate}{\today}
+
+% --- Redefine the maketitle command for a custom look ---
+\makeatletter
+\renewcommand{\maketitle}{
+    \begin{center}
+        \vspace*{1cm}
+        {\Huge\bfseries \courseTitle}
+        \vspace{0.5cm}
+        
+        \hrule
+        \vspace{0.5cm}
+        
+        {\Large \textbf{Lecture \lectureNumber:} \lectureTopic}
+        \vspace{0.5cm}
+        
+        \begin{tabular}{ll}
+            \bfseries Instructor: & \instructorName \\
+            \bfseries Date: & \lectureDate \\
+        \end{tabular}
+        
+        \vspace{0.5cm}
+        \hrule
+        \vspace{1cm}
+    \end{center}
+}
+\makeatother
+
+%----------------------------------------------------------------
+%                   CUSTOM NOTE ENVIRONMENTS
+%----------------------------------------------------------------
+
+% --- Definition Box ---
+\newtcolorbox{definition}[1]{
+    colback=LightSkyBlue!10,
+    colframe=RoyalBlue,
+    fonttitle=\bfseries,
+    title=Definition: #1
+}
+
+% --- Theorem Box ---
+\newtcolorbox{theorem}[1]{
+    colback=Yellow!10,
+    colframe=Goldenrod,
+    fonttitle=\bfseries,
+    title=Theorem: #1
+}
+
+% --- Example Box ---
+\newtcolorbox{example}{
+    colback=SeaGreen!10,
+    colframe=SeaGreen,
+    fonttitle=\bfseries,
+    title=Example
+}
+
+% --- Key Point/Remark Box ---
+\newtcolorbox{keypoint}{
+    colback=Red!5,
+    colframe=Red!75!black,
+    fonttitle=\bfseries,
+    title=Key Point!
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                     DOCUMENT STARTS HERE                   %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------- SET YOUR LECTURE DETAILS HERE -----------
+\renewcommand{\courseTitle}{PH205: Math Method of Physics}
+\renewcommand{\lectureNumber}{2}
+\renewcommand{\lectureTopic}{Math Method of Physics}
+\newcommand{\instructorName}{Justin David}
+\renewcommand{\lectureDate}{August 4, 2025}
+\renewcommand{\instructorName}{Justin David}
+%-----------------------------------------------------
+
+\begin{document}
+
+\maketitle % This command generates the title using the details above
+
+\tableofcontents % Creates a table of contents from your sections
+\newpage
+
+%----------------------------------------------------------------
+%                   START WRITING YOUR NOTES
+%----------------------------------------------------------------
+
+\section{Newton's First Law: The Law of Inertia}
+
+Newton's first law states that an object will remain at rest or in uniform motion in a straight line unless acted upon by an external force. This property of an object to resist changes in its state of motion is called \textbf{inertia}.
+
+\begin{keypoint}
+    An object's velocity, $\vec{v}$, is constant if and only if the net force, $\sum \vec{F}$, acting on it is zero. Mathematically:
+    $$ \sum \vec{F} = 0 \iff \frac{d\vec{v}}{dt} = 0 $$
+\end{keypoint}
+
+\section{Newton's Second Law: Force and Acceleration}
+
+This is the most famous of the three laws. It provides a quantitative relationship between force, mass, and acceleration.
+
+\begin{definition}{Force}
+    In physics, a force is an influence that can change the motion of an object. A force can cause an object with mass to change its velocity (e.g., moving from a state of rest), i.e., to accelerate.
+\end{definition}
+
+The law is expressed by the formula:
+$$ \vec{F}_{net} = m\vec{a} $$
+Where:
+\begin{itemize}
+    \item $\vec{F}_{net}$ is the net force vector.
+    \item $m$ is the mass of the object (a scalar).
+    \item $\vec{a}$ is the acceleration vector.
+\end{itemize}
+
+\begin{example}
+    A 10 kg box is pushed on a frictionless surface with a horizontal force of 50 N. What is its acceleration?
+    \begin{center}
+        % For images, make sure the image file (e.g., box_diagram.png)
+        % is in the same directory as your .tex file.
+        % \includegraphics[width=0.4\textwidth]{box_diagram.png}
+    \end{center}
+    
+    Using Newton's second law:
+    $$ a = \frac{F}{m} = \frac{50 \text{ N}}{10 \text{ kg}} = 5 \text{ m/s}^2 $$
+\end{example}
+
+\section{Newton's Third Law: Action and Reaction}
+
+For every action, there is an equal and opposite reaction.
+
+\begin{theorem}{Action-Reaction Pairs}
+    If object A exerts a force $\vec{F}_{AB}$ on object B, then object B simultaneously exerts a force $\vec{F}_{BA}$ on object A, and the two forces are equal in magnitude and opposite in direction:
+    $$ \vec{F}_{AB} = -\vec{F}_{BA} $$
+\end{theorem}
+
+\lipsum[1-2] % This is just dummy text, you can delete it.
+
+\end{document}% --- Problem Box ---
+\newtcolorbox{problem}[1]{
+    colback=Thistle!10,
+    colframe=Plum,
+    fonttitle=\bfseries,
+    title=Problem: #1
+}
+
+% --- Solution Box ---
+\newtcolorbox{solution}{
+    colback=Honeydew!10,
+    colframe=ForestGreen,
+    fonttitle=\bfseries,
+    title=Solution
+}
