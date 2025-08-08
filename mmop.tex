@@ -1,4 +1,4 @@
-\documentclass[11pt, a4paper]{report}
+\documentclass[12pt, a4paper]{report}
 
 %----------------------------------------------------------------
 %                           PACKAGES
@@ -136,26 +136,23 @@
 
 \section{Linear Operators}
 A linear operator is a function between two vector spaces that preserves the operations of vector addition and scalar multiplication.
+
 $$
 A(e_i) = \sum_{j=1}^n A_{ji} e_j
 $$
-A linear operator maps from one vector space to another.
+A linear operator maps from one vector space to another. Below the $e_i$ \& $f_i$ basis vectors corresponds to vector space $V$ \& $V'$. 
+\textbf{Remember: }The difference between linear operator and transformation is that if $V = V'$ the mapping is called operator while if $V \neq V'$ it is linear tranformation in general.
 $$
-V \to V'
-$$
-$$
-e_i \to v'
+V \to V' \implies e_i \to f_i
 $$
 $$
-i = 1 \dots n
-$$
-$$
+i = 1 \dots n \quad \& \quad
 j = 1 \dots n
 $$
 $$
 \phi(e_i) = \sum_{j=1}^n A_{ji} f_j
 $$
-Example: map from $n$-dimensional vector space to $n$-dimensional vector space.
+\textbf{Example}: map from $n$-dimensional vector space to $n$-dimensional vector space.
 $$
 \phi(e_i) = e_i
 $$
@@ -174,15 +171,13 @@ $$
 \subsection{Projection Operator}
 A projection operator is a linear operator $P$ from a vector space to itself such that $P^2 = P$.
 $$
-V = \sum_{i} c_i e_i
+\text{If: }V = \sum_{i} c_i e_i \quad \& \quad \phi(e_i) = e_i \, \forall i
 $$
 $$
-\phi^2(v) = \phi(\phi(v)) = \phi(\phi(c_i e_i)) = \phi(c_i e_i) = c_i e_i = v
+\text{Then: }\phi^2(v) = \phi(\phi(v)) = \phi(\phi(c_i e_i)) = \phi(c_i e_i) = c_i e_i = v
 $$
-$$
-\phi(c_i v_i) = v_i, \phi(c_i v_i) = v_i
-$$
-Example: mapping 2-dimensional to 3-dimensional v-s.
+
+\textbf{Example:} mapping 2-dimensional to 3-dimensional v-s.
 $$
 \phi(e_1) = f_1+f_2+f_3
 $$
@@ -197,7 +192,41 @@ $$
 1 & -1
 \end{pmatrix}
 $$
-Matrices occur naturally in representation of linear operator. Matrix algebra are inherited from the rules of linear algebra.
+
+The above matrix can be verified if basis are defined as below. You can choose any choice of basis. $\phi(e_i)$ is just matrix multiplication of $\phi$ with $e_i$.
+
+$$
+e_1 = 
+\begin{pmatrix}
+1\\
+0\\
+\end{pmatrix}\,
+e_2 =
+\begin{pmatrix}
+0\\
+1\\
+\end{pmatrix}
+f_1 = 
+\begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+f_2 = 
+\begin{pmatrix}
+0\\
+1\\
+0
+\end{pmatrix}
+f_3 = 
+\begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}
+$$
+
+Matrices occur naturally in representation of linear operator. Matrix algebra are inherited from the rules of linear algebra. Below is the algebra of addition of matrix.
 $$
 A(c_i) =  A_{ji} c_j
 $$
@@ -210,7 +239,7 @@ $$
 
 \section{Matrix Properties and Operations}
 
-\subsection{Scalar Multiplication and Related Concepts}
+\subsection{Scalar Multiplication and function action on matrix}
 Scalar multiplication is one of the basic operations defining a vector space.
 $$
 (\lambda A)(e_i) = \lambda A(e_i) = \lambda A_{ji} e_j
@@ -218,11 +247,8 @@ $$
 $$
 (\lambda A)_{ij} = \lambda A_{ij}
 $$
-$$
-(A^{-1})_{ij} \cdot (A^{-1})_{ij} = \delta_{ij}
-$$
-$A^{-1}$ has to be a square matrix.
-
+The general function which can be expanded in taylor series can act on matrix to give another matrix.
+If the expansion has infinite terms then it is necessary that each element in matrix addition to converge.
 $$
 e^A = I + A + \frac{A^2}{2!} + \dots
 $$
@@ -232,19 +258,11 @@ $$
 $$
 Method of computing inverse for matrices close to identity.
 
-\subsection{Matrices related to a matrix $A$}
-$$
-(A^T)_{ij} = A_{ji} \quad \text{(Transpose)}
-$$
-$$
-(A^\ast)_{ij} = (A_{ij})^\ast \quad \text{(Complex conjugate)}
-$$
-$$
-(A^\dagger)_{ij} = (A^T_{ij})^\ast = (A_{ji})^\ast \quad \text{(Hermitian conjugate)}
-$$
-
-\subsection{Special Matrices}
+\subsection{Special Matrices and definitions}
 \begin{itemize}
+    \item $(A^T)_{ij} = A_{ji} \quad \text{(Transpose)}$
+    \item $(A^\ast)_{ij} = (A_{ij})^\ast \quad \text{(Complex conjugate)}$
+    \item $(A^\dagger)_{ij} = (A^T_{ij})^\ast = (A_{ji})^\ast \quad \text{(Hermitian conjugate)}$
     \item $A^T=A$: Symmetric
     \item $A^T=-A$: Anti-symmetric
     \item $A^\dagger=A$: Hermitian
@@ -316,7 +334,7 @@ Trace of a matrix is sum of diagonal.
 $$
 \text{Tr}(A) = \sum A_{ii}
 $$
-\subsubsection{How to find the trace of a matrix}
+\subsubsection{Solving linear equation using matrix representation}
 $$
 a_{11}x_1+a_{12}x_2 = c_1
 $$
@@ -349,7 +367,7 @@ a_{21} & a_{22}
 \end{vmatrix}
 }
 $$
-\subsubsection{Determinant of a matrix}
+\subsubsection{Determinant of a matrix (levi-civita method)}
 $$
 \det A =
 \begin{vmatrix}
@@ -362,12 +380,12 @@ $$
 $$
 \epsilon^{123\dots n} = 1
 $$
+if the order of the index is interchange once like below then the sign changes of each change in order of index 
 $$
 \epsilon^{2134\dots n} = -1
 $$
-$$
-\epsilon^{i_1 i_2 \dots i_n} = 0
-$$
+if the if any of the index repeat or are equal then
+$$\epsilon^{11\dots i_n} = 0 $$
 $$
 \det A = \sum_{i_1, i_2, \dots, i_n} \epsilon^{i_1 i_2 \dots i_n} a_{1 i_1} a_{2 i_2} \dots a_{n i_n}
 $$
@@ -406,10 +424,209 @@ $$
 Cofactor $A_{ij} = (-1)^{i+j}$
 
 \subsubsection{Gauss-Jordan Matrix Inversion}
+The \textbf{Gauss-Jordan elimination} method can be used to compute the inverse of an invertible matrix $A$ by performing row operations on the augmented matrix $[A\mid I]$ until it becomes $[I\mid A^{-1}]$. The procedure is:
+\begin{enumerate}
+    \item Form the augmented matrix $[A\mid I]$, where $I$ is the identity matrix of the same size as $A$.
+    \item For each pivot column $j=1,2,\dots,n$:
+    \begin{enumerate}
+        \item Swap rows if necessary to ensure a nonzero pivot entry in row $j$.
+        \item Scale the pivot row so that the pivot entry becomes $1$.
+        \item Use the pivot to eliminate all other entries in column $j$ by adding suitable multiples of the pivot row to the other rows.
+    \end{enumerate}
+    \item After processing all $n$ pivot columns, the left half of the augmented matrix will be the identity $I$, and the right half will be $A^{-1}$.
+\end{enumerate}
+
+\textbf{Example:} Invert a $2\times2$ matrix
+$$
+A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}.
+$$
+Form the augmented matrix:
+$$
+\bigl[A\mid I\bigr] = \bigl[\begin{pmatrix}a & b \\ c & d\end{pmatrix}\mid \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}\bigr].
+$$
+Apply row operations:
+\begin{align*}
+& R_1 \leftarrow R_1 / a,  &\text{(make pivot $1$)}\\
+& R_2 \leftarrow R_2 - c\,R_1,      &\text{(zero below pivot)}\\
+& R_2 \leftarrow R_2 / (d - bc/a), &\text{(make second pivot $1$)}\\
+& R_1 \leftarrow R_1 - (b/a)\,R_2,  &\text{(zero above second pivot)}
+\end{align*}
+Resulting in $[I\mid A^{-1}]$, where
+$$
+A^{-1} = \frac{1}{ad - bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}.
+$$
+
+
+\section*{1. Gauss-Jordan Matrix Inversion and Row Operations}
+
+To invert a matrix or solve linear systems, the Gauss-Jordan method uses three fundamental row operations:
+\begin{enumerate}
+    \item \textbf{Multiply a row by a nonzero scalar} ($\lambda$):\\
+    $$
+    \forall j \quad A_{ij} \to \lambda A_{ij}
+    $$
+
+    This can be represented by multiplying a matrix on the left of $A$ by an elementary matrix $R$ which is the identity matrix except for the $i$th diagonal entry, replaced with $\lambda$:
+    \[
+    R = 
+    \begin{pmatrix}
+    1 &        &        &       \\
+      & \ddots &        &       \\
+      &        & \lambda &      \\
+      &        &        & 1
+    \end{pmatrix}
+    \]
+    Multiplying the above matrix with A on the left is equivalent to Multiplying $i$th row of A with $\lambda$.
+
+    \item \textbf{Add or Subtract a scalar multiple of one row to another:}\\
+
+    Subtracting scalar multiple of $k$th row from $i$th row
+    \[
+    A_{ij} \to A_{ij} - \lambda A_{kj}\quad \forall j
+    \]
+    The corresponding elementary matrix has $- \lambda$ in the $ik$ position (row $i$, column $k$).
+    with all diagonal entries as 1 and other entries as 0.
+    \[
+    R = 
+    \begin{pmatrix}
+    1 &        &         &      \\
+      & \ddots & -\lambda &      \\
+      &        &   1       &      \\
+      &        &         & 1    
+    \end{pmatrix}
+    \]
+    \item \textbf{Interchange two rows:}\\
+    Swap rows $i$ and $k$, i.e.,
+    \[
+    A_{ij} \leftrightarrow A_{kj}
+    \]
+    The corresponding matrix exchanges the identity rows $i$ and $k$. just making diagonal entries $R_{ii}$ \& $R_{kk}$ = 0 and $R_{ki}$ \& $R_{ik} = 1$ in identity matrix makes it do a row operation of swapping rows when muliplies on left of the matrix
+\end{enumerate}
+
+Each of these operations corresponds to left-multiplication by an elementary matrix, and their sequence can systematically convert any invertible matrix to identity, thereby computing its inverse.
+
+\section*{2. Matrix Inversion Algorithm}
+
+Given an invertible square matrix $A$, the matrix operation that transforms A into I converts I to A
+\[
+A \to I
+\]
+by applying row operations to both sides:
+\[
+[R_k \ldots R_2 R_1]A = I \implies [R_k \ldots R_2 R_1] = A^{-1}
+\]
+If $A$ cannot be transformed to $I$, it is not invertible.
+
+\subsection*{Step-by-Step}
+\begin{enumerate}
+    \item Choose pivot element ($a_{kk}$) on the diagonal, make it $1$ by division.
+    \item Eliminate below entries in column $k$ to make zeros using suitable row operations.
+    \item Repeat for columns $k=1$ to $n$ to get an upper triangular matrix, then eliminate above diagonal entries to get identity.
+\end{enumerate}
+Ultimately,
+\[
+R = R_m \dots R_2 R_1 \implies R A = I \implies A^{-1} = R
+\]
+
+\section*{3. Solution of Linear Systems}
+
+For $A x = c$ ($A$ square, $c$ vector):
 \begin{itemize}
-    \item $A_{ij} \to \lambda A_{ij} \quad \forall j$ (Row operation: multiplication by $\lambda$)
-    \item Subtract a row by a multiple of another.
-    \item $A_{ij} \to A_{ij}$
+    \item \textbf{If} $\det A \neq 0$ (i.e., $A$ invertible), \textbf{unique solution} exists:
+    \[
+    x = A^{-1} c
+    \]
+    \item \textbf{If} $\det A = 0$:
+    \begin{itemize}
+        \item If $A x = 0$ has a non-trivial solution, then $A x = c$ can have infinitely many or no solutions (depending on consistency).
+        \item If $A x = c$ is consistent (i.e., $c$ in column space of $A$), infinite solutions exist.
+        \item If $A x = c$ is inconsistent, no solutions.
+    \end{itemize}
 \end{itemize}
+
+\subsection*{Homogeneous System}
+If $A x = 0$:
+\begin{itemize}
+    \item If $\det(A) \neq 0 \implies$ only the trivial solution $x = 0$.
+    \item If $\det(A) = 0 \implies$ infinitely many non-trivial solutions possible.
+\end{itemize}
+
+\section*{4. Change of Basis and Transformation of Coordinates}
+
+\subsection*{Basis Transformation}
+
+Suppose $e_i$ is the original basis, and $e'_i$ is the new basis after linear transformation:
+\[
+e'_i = M_{ik} e_k
+\]
+Here, $M$ is invertible (because the bases are linearly independent).
+
+Expressing the inverse transformation:
+\[
+e_k = (M^{-1})_{k i} e'_i
+\]
+Or using index notation:
+\[
+e_i = M_{ij} e'_j, \quad e'_j = (M^{-1})_{ji} e_i
+\]
+
+\subsection*{Vector Components Transformation}
+
+A vector $X$ can be represented as $x_j e_j$ or $x'_j e'_j$. When the basis changes:
+\[
+X = x_j e_j = x'_i e'_i
+\]
+Substitute $e'_i$ in terms of $e_j$:
+\[
+X = x'_i (M_{ik} e_k) = (M^{T} x')_k e_k
+\]
+Therefore, new components in the original basis are:
+\[
+x_k = M^{T}_{k i} x'_i
+\]
+Or
+\[
+x' = (M^{-1})^{T} x
+\]
+This is called \textit{contravariant transformation} for vector components.
+
+The basis vectors themselves transform as:
+\[
+e'_i = M_{ik} e_k
+\]
+which is called \textit{covariant transformation}.
+
+\section*{5. Transformation of Operators Under Basis Change}
+
+Let $A$ be a matrix representing a linear operator in basis $e_j$:
+\[
+A(e_j) = A_{ij} e_i
+\]
+Change basis: $e_i' = M_{ik} e_k$.
+
+\subsection*{Matrix Transformation}
+
+Let $x$ transform as above:
+\[
+x'_i = (M^{-1})_{ij} x_j
+\]
+Then, in the new basis, the operator $A'$ acting on $x'$:
+\[
+y'_i = A'_{ij} x'_j
+\]
+But $y'_i = M_{ik} y_k$, $x'_j = (M^{-1})_{jl} x_l$.
+\[
+y'_i = M_{ik} y_k = M_{ik} A_{k l} x_l = M_{ik} A_{k l} M_{mj}^{-1} x'_j
+\]
+So the transformation rule for matrices under basis change is:
+\[
+A' = M A M^{-1}
+\]
+This is called a \textit{similarity transformation}.
+
+
+
+
+
 
 \end{document}
